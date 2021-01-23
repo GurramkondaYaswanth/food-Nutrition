@@ -6,21 +6,18 @@
 <meta charset="ISO-8859-1">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Code Wall</title>
+    <title>Food Nutrition</title>
     <link type="text/css" rel="stylesheet" href="./css/style.css">
 </head>
 <body>
  <nav>
-        <img src="./assets/logo.svg" alt="logo" />
+        <img src="" alt="NF" />
         <ul>
         <li> <a href="${pageContext.request.contextPath}/login">Login</a></li>
             <li> <a href="${pageContext.request.contextPath}/signup">Sign Up</a></li>
         </ul>
     </nav>
-    <div class="welcome-back">LEARN. CODE. REPEAT</div>
-    <div class="sub-text">CODEWALL is a collaborative learning platform for tech enthuiasts. Developers across the world
-        contribute /discuss about modern technology, web-development and all things coding.</div>
-    <img class="login-illustration" src="./assets/illustration on sign up page.svg" alt="">
+    
     <div class="signup-form">
         <div class="title">SIGN UP</div>
         <form action="${pageContext.request.contextPath}/signup" method="post">

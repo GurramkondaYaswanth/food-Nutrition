@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.SystemException;
 
 import dao.SigninDao;
 import model.Admin;
@@ -46,30 +47,28 @@ public class LoginViewController extends HttpServlet {
 		String email = request.getParameter("email"); //get email from jsp page
 		String password = request.getParameter("password"); //get password from jsp page 
 		String Admin = request.getParameter("radio");
-
+		System.out.println("Admin "+Admin+email);
 		String adminCheck = "admin";
 		
-		if(!isNullOrEmpty(Admin)) {
+		if(!Admin.isEmpty()) {
 		if(Admin.equalsIgnoreCase(adminCheck)) {
 			
 			Admin admin = new Admin();
 			admin.setEmail(email);
 			admin.setPassword(password);
 			
-//			Employee emp = new Employee();
-//			emp.setEmail(email);
-//			emp.setPassword(password);
+
 			SigninDao signinDao = new SigninDao();
 			boolean validateAdmin = false;
 			try {
 				validateAdmin = signinDao.Adminlogin(admin);
-				System.out.println("validateAdmin"+validateAdmin);
-			} catch (SQLException e) {
+			} catch (SystemException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println("validateAdmin "+validateAdmin);
 			if(validateAdmin) {
-				RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/signupView.jsp");
+				RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/FooditemsView.jsp");
 				rd.forward(request, response);
 			}else
 			{
@@ -77,33 +76,19 @@ public class LoginViewController extends HttpServlet {
 				rd.forward(request, response);
 			}
 			
+		}else {
+			RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/FooditemsView.jsp");
+			rd.forward(request, response);
 		}
 		}else {
-			RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/signupView.jsp");
+			RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/FooditemsView.jsp");
 			rd.forward(request, response);
 			
 		}
 
-		
-//		User user = new User(password, password, null);
-//		user.setEmail(email);
-//		user.setPassword(password);
-//		UserDao userdao = new UserDao();
-//		
-//		boolean validateUser = userdao.loginUser(user);
-//		if(validateUser) {
-//			RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
-//			rd.forward(request, response);
-//		}else
-//		{
-//			RequestDispatcher rd=this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
-//			rd.forward(request, response);
-//		}
 	}
 
-	private boolean isNullOrEmpty(String doctor) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
+
 
 }

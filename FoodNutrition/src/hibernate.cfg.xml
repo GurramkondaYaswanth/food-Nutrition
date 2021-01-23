@@ -8,9 +8,11 @@
         <property name="hibernate.connection.password">Yash@2020</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/foodnutrition</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
         <mapping class="model.Admin"></mapping>
+        <mapping class="model.FoodItem"></mapping>
+        
     </session-factory>
 </hibernate-configuration>
